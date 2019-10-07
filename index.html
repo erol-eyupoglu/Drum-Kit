@@ -22,9 +22,8 @@
   <script>
     const sound_arr = [65, 83, 68, 70, 71, 72, 74, 75, 76];
 
-    document.addEventListener("click", event => {
+    const funcClick = event => {
       let clicked = Number(event.target.id);
-      console.log(clicked);
       if (sound_arr.includes(clicked)) {
         let audio2 = new Audio(`sounds/${clicked}.wav`);
         audio2.play();
@@ -32,26 +31,30 @@
         selected2.classList.add('playing');
         setTimeout(() => {
           selected2.classList.remove('playing')
-        }, 250);
+        }, 200);
       }
       else {
         alert("Please press the corresponding keys or click the key area.")
       }
-    });
+    }
 
-    const func = e => {
+    const funcPress = e => {
       if (sound_arr.includes(e.keyCode)) {
-        console.log(e.keyCode);
         let audio = new Audio(`sounds/${e.keyCode}.wav`);
         audio.play();
         let selected = document.getElementById(`${e.keyCode}`);
         selected.classList.add('playing');
         setTimeout(() => {
           selected.classList.remove('playing')
-        }, 250);
+        }, 200);
+      }
+      else {
+        alert("Please press the corresponding keys or click the key area.")
       }
     }
-    document.addEventListener("keydown", func);
+
+    document.addEventListener("keydown", funcPress);
+    document.addEventListener("click", funcClick);
 
   </script>
   
