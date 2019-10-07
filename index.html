@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Drum Kit</h1>
+  <div class="keys">
+      <div id="65" class="key">A</div>
+      <div id='83' class="key">S</div>
+      <div id='68' class="key">D</div>
+      <div id='70' class="key">F</div>
+      <div id='71' class="key">G</div>
+      <div id='72' class="key">H</div>
+      <div id='74' class="key">J</div>
+      <div id='75' class="key">K</div>
+      <div id='76' class="key">L</div>
+  </div>
+
+  <script>
+    const sound_arr = [65, 83, 68, 70, 71, 72, 74, 75, 76];
+
+    document.addEventListener("click", event => {
+      let clicked = Number(event.target.id);
+      console.log(clicked);
+      if (sound_arr.includes(clicked)) {
+        let audio2 = new Audio(`sounds/${clicked}.wav`);
+        audio2.play();
+        let selected2 = document.getElementById(`${clicked}`);
+        selected2.classList.add('playing');
+        setTimeout(() => {
+          selected2.classList.remove('playing')
+        }, 250);
+      }
+    });
+
+    const func = e => {
+      if (sound_arr.includes(e.keyCode)) {
+        console.log(e.keyCode);
+        let audio = new Audio(`sounds/${e.keyCode}.wav`);
+        audio.play();
+        let selected = document.getElementById(`${e.keyCode}`);
+        selected.classList.add('playing');
+        setTimeout(() => {
+          selected.classList.remove('playing')
+        }, 250);
+      }
+    }
+    document.addEventListener("keydown", func);
+
+  </script>
+  
+</body>
+</html>
+
+
+
